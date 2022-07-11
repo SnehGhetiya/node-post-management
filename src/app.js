@@ -3,12 +3,14 @@ const cors = require("cors");
 const db = require("./helper/connection");
 
 const userRouter = require("./routes/user/user.routes");
+const postRouter = require("./routes/post/post.routes");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 app.use("/user", userRouter);
+app.use("/post", postRouter);
 
 app.get("/", (req, res) => {
 	res.status(200).json({

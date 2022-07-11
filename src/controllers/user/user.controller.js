@@ -13,9 +13,9 @@ const signUp = async (req, res) => {
 			.json({ status: "failed", message: validation.error.details[0].message });
 	}
 
-	const isUserExist = await isUserExists(req?.body?.email);
+	const result = await isUserExists(req?.body?.email);
 
-	if (isUserExist) {
+	if (result) {
 		return res.status(400).json({
 			status: "failed",
 			message: "User with this email already exist",
