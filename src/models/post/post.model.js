@@ -43,7 +43,7 @@ postSchema.methods.joiValidate = function ({ title, body, author, tags }) {
 		}),
 		tags: Joi.array().items(
 			Joi.string()
-				.valid("Science", "Technology", "Newsletter")
+				.valid("Science", "Technology", "News")
 				.min(1)
 				.max(3)
 				.messages({

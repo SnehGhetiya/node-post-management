@@ -24,7 +24,10 @@ const signUp = async (req, res) => {
 
 	try {
 		await newUser.save();
-		const token = generateToken(newUser);
+		const token = generateToken({
+			id: newUser._id,
+			username: newUser.username,
+		});
 		res.status(201).json({ status: "success", token });
 	} catch (err) {
 		res.status(500).json({ status: "failed", message: err.message });
@@ -49,7 +52,10 @@ const login = async (req, res) => {
 			.json({ status: "failed", message: "Password is incorrect" });
 	}
 	try {
-		const token = generateToken(user);
+		const token = generateToken({
+			id: user._id,
+			username: user.username,
+		});
 		res.status(200).json({ status: "success", token });
 	} catch (err) {
 		res.status(500).json({ status: "failed", message: err.message });

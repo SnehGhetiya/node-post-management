@@ -1,8 +1,10 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: `${__dirname} /../../.env` });
 
-const generateToken = (user) => {
-	return jwt.sign({ data: user }, process.env.JWT_SECRET, { expiresIn: "1h" });
+const generateToken = ({ id, username }) => {
+	return jwt.sign({ id, username }, process.env.JWT_SECRET, {
+		expiresIn: "1h",
+	});
 };
 
 const verifyToken = (req, res, next) => {
@@ -21,7 +23,7 @@ const verifyToken = (req, res, next) => {
 				message: err.message,
 			});
 		}
-		req.user = decoded.data;
+		req.user = decoded;
 		next();
 	});
 };
