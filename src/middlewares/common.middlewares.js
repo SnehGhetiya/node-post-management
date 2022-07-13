@@ -5,4 +5,8 @@ const getPagination = (page, size) => {
 	return { limit, offset };
 };
 
-module.exports = getPagination;
+const escapeRegex = (text) => {
+	return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+};
+
+module.exports = { getPagination, escapeRegex };
