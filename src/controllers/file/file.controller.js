@@ -9,7 +9,7 @@ const upload = async (req, res, next) => {
 		}
 
 		res.status(200).json({
-			message: "http://localhost:5000/" + `${req?.file?.filename}`,
+			filePath: "http://localhost:5000/" + `${req?.file?.filename}`,
 		});
 	} catch (error) {
 		if (error.code == "LIMIT_FILE_SIZE") {
